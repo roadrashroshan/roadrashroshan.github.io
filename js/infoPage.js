@@ -1,6 +1,6 @@
 $(document).ready(function(){
-   
-
+   display();
+    
     
     $("core-item[label='Warning']").click(function(){
         $("#field").text("Warnings");
@@ -27,7 +27,20 @@ $(document).ready(function(){
         displayBrands();
     });
     
- 
+    
+    //
+    function display(){
+        //get drug
+     var specific_drug = JSON.parse(localStorage.getItem('drug'));
+        
+        //set counter
+        var i = 0;
+        //check drugs 
+        if(specific_drug != null) {
+                $("#field").text(specific_drug.id);     
+            }
+        }
+    
  //function to display drug list
  /*function displayWarning(){
      console.log("entering displayWarning()");
@@ -72,7 +85,7 @@ $(document).ready(function(){
         var i = 0;
         //check drugs 
         if(specific_drug != null) {
-                $("#fieldText").text(specific_drug.purpose);     
+                $("#fieldText").text(specific_drug.reason);     
             }
         }
     

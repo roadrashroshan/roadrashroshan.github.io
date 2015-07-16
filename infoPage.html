@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+     <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
     <link rel="import" href="components/bower_components/core-scaffold/core-scaffold.html">
 <link rel="import" href="components/bower_components/core-header-panel/core-header-panel.html">
 <link rel="import" href="components/bower_components/core-menu/core-menu.html">
@@ -17,6 +18,34 @@
         body {
           font-family: 'Roboto',sans-serif;
         }
+        
+        core-item:hover{
+              background-color: #FFC107;
+        }
+        
+        #field{
+            font-size: 2.575em; 
+            font-family: 'Roboto',sans-serif; 
+            margin-bottom: 5%;
+            text-decoration: underline;
+            text-decoration-style:wavy;  
+        }
+        
+        #fieldText{
+            font-size: 1.175em; /* 30px/16=1.875em */
+            font-family: 'Roboto',sans-serif; 
+        }
+        
+        #sidebar {
+            font-size: 1.175em; /* 30px/16=1.875em */
+            font-family: 'Roboto',sans-serif;   
+        }
+        
+       #sidebar, #purpose, #effects, #active_ingred, #alt_Brand, #warning   { 
+        margin-top: 10%;
+        margin-bottom: 10%;
+           
+       }
         core-header-panel {
           background: white;
         }
@@ -38,7 +67,7 @@
         
         .core_card {
         position: absolute;
-        width: 99%;
+        width: 80%;
         height: 99%;
         border-radius: 2px;
         box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
@@ -59,13 +88,13 @@
                 <core-toolbar id="navheader">
                   <span>Menu</span>
                 </core-toolbar>
-                <core-menu>
+                <div id="sidebar"><core-menu>
                   <core-item id="purpose" label="Purpose"></core-item>
-                  <core-item id="sidebar_effect" label="Side Effects"></core-item>
+                  <core-item id="effects" label="Side Effects"></core-item>
                   <core-item id="active_ingred" label="Active Ingredients"></core-item>
                    <core-item id="alt_Brand" label="Other Brands"></core-item>
                   <core-item id="warning" label="Warning"></core-item>
-                </core-menu>
+                </core-menu></div>
               </core-header-panel>
         <core-header-panel main>
                 <core-toolbar id="mainheader">
