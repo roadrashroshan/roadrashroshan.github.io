@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    
+    console.log(checkBtn);
     /* We hide the information menu from the user before any search is done */
     $(".heading").hide();
     /* Function to fix casing on strings */
@@ -20,10 +20,25 @@ $(document).ready(function() {
         
         /* Grabbing data from the JSON on the SPL of the drug */
 		var jqxhr = $.getJSON("https://api.fda.gov/drug/label.json?search=brand_name:"+toAdd, function(data) {
-            var brand, generic, purpose, activeIngredient;
+            var brand, generic, purpose, activeIngredient, warnings, instructs = "No information found on instructions.";
             
             /* Checking if the information is in the JSON and then displaying it */
-            
+            /* Displaying the instructions for the user */
+            (data.results[0].description) ? 
+                instructs = data.results[0].description+"" : instructs += "";
+            (data.results[0].indications_and_usage) ? 
+                instructs += data.results[0].indications_and_usage+"" : instructs+="";
+            (data.results[0].instructions_for_use) ? 
+                instructs += data.results[0].instructions_for_use+"" : instructs+="";
+            (data.results[0].when_using) ? 
+                instructs += data.results[0].when_using+"" : instructs += "";
+            (data.results[0].storage_and_handling) ? 
+                instructs += data.results[0].storage_and_handling+"" : instructs += "";
+            $("#instructions").text(instructs);
+            /* Displaying warnings to the user */
+            (data.results[0].warnings) ? 
+                warnings = data.results[0].warnings+"" : warnings = "No information found on warnings";
+            $("#warnings").text(warnings);
             /* Getting and dispaying brand name*/
 			(data.results[0].openfda.brand_name) ? 
                 brand = data.results[0].openfda.brand_name + "" : brand = "No information found on brand name.";
@@ -47,9 +62,14 @@ $(document).ready(function() {
             $("#active_ingred").text(activeIngredient);
             $.getJSON("https://api.fda.gov/drug/label.json?search=generic_name:"+generic+"&count=openfda.brand_name.exact",function(jso){
                 var brands;
-                jso.results[0] ? brands = jso.results[0].term : brands = "No information found on other brands.";              
-                for(var i = 1; i < jso.results.length && i < 10; i++) {
-                    brands +=", "+ jso.results[i].term;
+                jso.results[0] ? brands = "" : brands = "No information found on other brands.";              
+                for(var i = 0; i < jso.results.length && i < 10; i++) {
+                    var currBrand = fixCasing(jso.results[i].term + "");
+                    if (currBrand !== brand || toAdd !== currBrand) {
+                        brands += currBrand + "";
+                        i === 9 || i === (jso.results.length - 1) ? brands += "": brands +=", ";
+                    }
+                    
                }
                 $("#other_brands").text(brands);
             });
@@ -72,18 +92,22 @@ $(document).ready(function() {
             for(var i = 1; i < data.results.length && i < 5 ; ++i) {
                 sideEffect += ", "+data.results[i].term;
             }
-            sideEffect = fixCasing(sideEffect);
+            //sideEffect = fixCasing(sideEffect);
             $("#side_effects").text(sideEffect);
         });
     }
     /* The two ways for the user to prompt a search : clicking the search button or hitting enter */
     $("#searchBtn").click(function() {
        searchFDA();
+        checkBtn = true;
+        enableBtn();
     });
     
     $(document).keypress(function(event) {
         if (event.which === 13){
             searchFDA();
+            checkBtn = true;
+            enableBtn();
         }
     });
 });

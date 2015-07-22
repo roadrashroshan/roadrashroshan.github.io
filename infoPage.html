@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+
 <html>
-     <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
-    <link rel="import" href="components/bower_components/core-scaffold/core-scaffold.html">
+<head>
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+<link rel="import" href="components/bower_components/core-scaffold/core-scaffold.html">
 <link rel="import" href="components/bower_components/core-header-panel/core-header-panel.html">
 <link rel="import" href="components/bower_components/core-menu/core-menu.html">
 <link rel="import" href="components/bower_components/core-item/core-item.html">
@@ -11,6 +13,8 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
 <link rel="import" href="components/bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="components/bower_components/core-icons/core-icons.html">
+<link rel="import" href="components/bower_components/paper-shadow/paper-shadow.html">
+
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="js/infoPage.js"></script>
@@ -19,16 +23,29 @@
           font-family: 'Roboto',sans-serif;
         }
         
-        core-item:hover{
+       /* core-item:hover{
               background-color: #FFC107;
-        }
+        }*/ 
+        
+        .side_card{
+            margin: 5%;
+            padding: 1px 10px;
+            border-radius: 5px;
+            background-color: #eee;
+           /* box-shadow: 5px 5px 2px #888888;*/
+      
+            }
+        
+        
         
         #field{
             font-size: 2.575em; 
             font-family: 'Roboto',sans-serif; 
             margin-bottom: 5%;
+            margin-left: 0%;
             text-decoration: underline;
-            text-decoration-style:wavy;  
+            float: left;
+            
         }
         
         #fieldText{
@@ -38,12 +55,14 @@
         
         #sidebar {
             font-size: 1.175em; /* 30px/16=1.875em */
-            font-family: 'Roboto',sans-serif;   
+            font-family: 'Roboto',sans-serif;  
+            margin-left: 5%;
         }
         
        #sidebar, #purpose, #effects, #active_ingred, #alt_Brand, #warning   { 
-        margin-top: 10%;
-        margin-bottom: 10%;
+        margin-top: %;
+        margin-bottom: %;
+        padding-top: 20%;
            
        }
         core-header-panel {
@@ -79,8 +98,13 @@
         #home {
             
             color:white;
+        }   
+        
         }
     </style>
+   
+    
+    </head>
     <body>
         <core-drawer-panel id="drawerPanel">
 
@@ -89,11 +113,27 @@
                   <span>Menu</span>
                 </core-toolbar>
                 <div id="sidebar"><core-menu>
-                  <core-item id="purpose" label="Purpose"></core-item>
+                    <div><paper-shadow class="side_card" z="3">
+                        <core-item id="purpose" label="Purpose"></core-item>
+                   </paper-shadow></div>
+                   
+                <div><paper-shadow class="side_card" z="3">    
                   <core-item id="effects" label="Side Effects"></core-item>
+                  </paper-shadow></div>
+                    
+                    <div><paper-shadow class="side_card" z="3">
                   <core-item id="active_ingred" label="Active Ingredients"></core-item>
+                      </paper-shadow></div>
+                        
+                    <div><paper-shadow class="side_card" z="3">
                    <core-item id="alt_Brand" label="Other Brands"></core-item>
+                    </paper-shadow></div>
+                        
+                <div><paper-shadow class="side_card" z="3">        
                   <core-item id="warning" label="Warning"></core-item>
+                  </paper-shadow></div>
+                    
+                    
                 </core-menu></div>
               </core-header-panel>
         <core-header-panel main>
@@ -104,10 +144,10 @@
                     <a href= "index.html"><core-icon icon="home" id="home"></core-icon></a>
                 </core-toolbar>
                 <div class="content">
-                    <core-card class="core_card" layout vertical><div id="field"><b>Field Title</b></div>
+                    <core-card class="core_card" layout vertical><div id="image"><h1 id="field">Field Title</h1></div>
                     
-                        <div id="fieldText">
-                            
+                        <div>
+            </div><div id="fieldText">
                             
                            </div>
                     
