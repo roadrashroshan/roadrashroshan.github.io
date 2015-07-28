@@ -27,12 +27,12 @@ function enableBtn(){
         if(drugList != null) {
             //loop through array and display
             $.each(drugList, function(key, value){
-                $("#drug_table").append('<tr id= "' + value.id + '">'+ 
+                $("#drug_table").append('<tr bordor="0" id= "' + value.id + '">'+ 
                 '<td>' + value.id + '</td>' + 
                /* '<td><a href="#" id="remove_drug" data-id="'+ value.id +'">Clear</a> | <a href="infoPage.html?id="'+ value.id +'" id="more_info" data-id="'+ value.id +'">View Info</a></td>' +
                 '</tr>');*/
                                         
-                '<td><a href="#" id="remove_drug" data-id="'+ value.id +'"><core-icon id="delete" icon="delete"></core-icon></a> <a href="infoPage.html?id="'+ value.id +'" id="more_info" data-id="'+ value.id +'"><core-icon id="moreInfo" icon="info"></core-icon></a></td>' +
+                '<td><a href="#" id="remove_drug" data-id="'+ value.id +'"><core-icon id="delete" icon="delete"></core-icon></a>  <a href="infoPage.html?id="'+ value.id +'" id="more_info" data-id="'+ value.id +'"><core-icon id="moreInfo" icon="info"></core-icon></a></td>' +
                 '</tr>');
                 
               //  alert(value.brand);
@@ -119,6 +119,17 @@ function enableBtn(){
                 "effects": effects,
                 "active": ingredient,
                 "altBrand": altBrand
+            }
+            
+             //New drug object for cloud database table
+            var drug_item = {
+                "id" : id,
+                "brand" : brandNm,
+                "generic": genericNm,
+                "reason": purpose,
+                "effects": effects,
+                "active": ingredient,
+                "altBrand": altBrand
             } 
             
             //add "new_drug" object of drug list array
@@ -126,6 +137,9 @@ function enableBtn(){
             
             //set the item to local storage
             localStorage.setItem('drugs', JSON.stringify(drugs));
+            
+             //set the item to local storage
+            localStorage.setItem('drug_item', JSON.stringify(drug_item));
             
             
             console.log('Drug Added');
